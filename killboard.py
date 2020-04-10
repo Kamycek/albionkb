@@ -75,9 +75,9 @@ class Killboard:
         # TODO Pobrać nazwę gildii z configu (zrobić przyjazne gildie)
         # TODO 1 gracza zamaist graczy w opisie
         # TODO Za długie nazwy gildii
-        if event['Killer']['GuildName'] == 'Sanktuarium':
+        if event['Killer']['GuildName'] == 'Zakon Bialego Wilka':
             color = 0x00ff00
-        elif event['Victim']['GuildName'] == 'Sanktuarium':
+        elif event['Victim']['GuildName'] == 'Zakon Bialego Wilka':
             color = 0xff0000
         # TODO Uprościć
         k_guild = event['Killer']['GuildName']
