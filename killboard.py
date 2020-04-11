@@ -35,6 +35,7 @@ class Killboard:
                 events.append(single_event)
             for event in events:
                 await Killboard.show_data(event, channel, client)
+                print(event)
             events = []
 
     @staticmethod
@@ -56,16 +57,22 @@ class Killboard:
         bg.save('./kill.png')
 
         embed = Embed(title='{0} zabił {1}'.format(event['Killer']['Name'], event['Victim']['Name']),
-                      description='Zabójstwo asystowane przez {0} graczy.'.format(event['numberOfParticipants']),
-                      url='https://www.albiononline2d.com/en/scoreboard/events/{0}'.format(event['EventId']),
+                      description='Zabójstwo asystowane przez {0} graczy.'.format(
+                          event['numberOfParticipants']),
+                      url='https://www.albiononline2d.com/en/scoreboard/events/{0}'.format(
+                          event['EventId']),
                       color=color)
-        embed.set_thumbnail(url='https://images-ext-2.discordapp.net/external/GnRbnzo76l06gqCQldieMDQitXEu6ahWoNVjOaAANGQ/https/albiononline2d.ams3.cdn.digitaloceanspaces.com/images/SA_COLLECTION_HITPOINTS_UNLOCKED.png')
+        embed.set_thumbnail(
+            url='https://images-ext-2.discordapp.net/external/GnRbnzo76l06gqCQldieMDQitXEu6ahWoNVjOaAANGQ/https/albiononline2d.ams3.cdn.digitaloceanspaces.com/images/SA_COLLECTION_HITPOINTS_UNLOCKED.png')
         embed.set_image(url='attachment://kill.png')
-        embed.add_field(name='Sława', value=event['TotalVictimKillFame'], inline=False)
+        embed.add_field(
+            name='Sława', value=event['TotalVictimKillFame'], inline=False)
         embed.add_field(name='Gildia Zabójcy', value=kg, inline=True)
         embed.add_field(name='Gildia Ofiary', value=vg, inline=True)
-        embed.add_field(name='MP Zabójcy', value=Killboard.__round_ip(event['Killer']['AverageItemPower']), inline=True)
-        embed.add_field(name='MP Ofiary', value=Killboard.__round_ip(event['Victim']['AverageItemPower']), inline=True)
+        embed.add_field(name='MP Zabójcy', value=Killboard.__round_ip(
+            event['Killer']['AverageItemPower']), inline=True)
+        embed.add_field(name='MP Ofiary', value=Killboard.__round_ip(
+            event['Victim']['AverageItemPower']), inline=True)
         return embed
 
     @staticmethod
@@ -93,6 +100,7 @@ class Killboard:
             vg = vg.replace(' - ', '')
             vg = vg.replace('[]', '—')
         embed = Killboard.__merge_img('https://albiononline2d.ams3.cdn.digitaloceanspaces.com/thumbnails/orig/{0}'.format(event['Killer']['Equipment']['MainHand']['Type']),
-                                      'https://albiononline2d.ams3.cdn.digitaloceanspaces.com/thumbnails/orig/{0}'.format(event['Victim']['Equipment']['MainHand']['Type']),
+                                      'https://albiononline2d.ams3.cdn.digitaloceanspaces.com/thumbnails/orig/{0}'.format(
+                                          event['Victim']['Equipment']['MainHand']['Type']),
                                       event, color, kg, vg, client, channel)
         await channel.send(embed=embed, file=discord.File('./kill.png'))

@@ -18,7 +18,7 @@ async def on_message(message):
     if message.content == "{0}on".format(config.get('prefix')):
         global is_tracking_running
         is_tracking_running = not is_tracking_running
-        print('Przełączono')
+        print('Przełączono!')
         while is_tracking_running:
             await Killboard.validate_data(Killboard.get_data(config.get('events_quantity')),
                                           config.get('tracked_guilds'),
