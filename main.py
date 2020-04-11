@@ -26,7 +26,7 @@ async def on_message(message):
                                           config.get('tracked_players'),
                                           message.channel,
                                           client)
-            # print('Przeanalizowano dane.')
+            print('Przeanalizowano dane.')
             await asyncio.sleep(config.get('sleep_time'))
 
     if message.content == "{0}reload".format(config.get('prefix')):
